@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@section Scripts{
+ 
+    <script src="~/lib/microsoft-signalr/signalr.min.js"></script>
+    <script type="text/javascript">
+        var connection  = new signalR.HubConnectionBuilder().withUrl("https://localhost:44310/MyHub")
+
+
+        connection.start().then(()=>{
+
+        })
+    </script>
+
+}
