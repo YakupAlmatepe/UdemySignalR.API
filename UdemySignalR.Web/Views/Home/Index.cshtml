@@ -5,12 +5,22 @@
  
     <script src="~/lib/microsoft-signalr/signalr.min.js"></script>
     <script type="text/javascript">
-        var connection  = new signalR.HubConnectionBuilder().withUrl("https://localhost:44310/MyHub")
+        var connection  = new signalR.HubConnectionBuilder().withUrl("https://localhost:4200/MyHub").build();
+        $("#conStatus").text(connection.connectionState);
 
 
         connection.start().then(()=>{
-
+            $("conStatus").text(connection.connectionState);
+        }).catch(err)=> {console.log(err)});
+        $("#btnNameSave").click(()=>{
+            connection.invoke("SendName",$("#txtName").val()).catch((err)=> console.log(err))
+        })
+        connection.on("ReceiveName",(name)=>{
+            console.log(name);
         })
     </script>
 
 }
+<div class="row">
+
+</div>
